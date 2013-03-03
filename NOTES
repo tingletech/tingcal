@@ -1,1 +1,1 @@
-./tingcal.py 2013 | column -c 100 > 2013.txt
+./tingcal.py 2013-01 2013-12 | column -c 100 > 2013.txt
