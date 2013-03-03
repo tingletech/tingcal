@@ -3,8 +3,8 @@
 Playing around with a funky calendar scheme
 
 sample calendar 
- * [pdf](http://tingletech.tumblr.com/tingcal/2013.pdf)
- * [unicode text](http://tingletech.tumblr.com/tingcal/2013.txt)
+ * [pdf](http://tingletech.github.com/tingcal/2013.pdf)
+ * [unicode text](http://tingletech.github.com/tingcal/2013.txt)
 
 ```
 usage: tingcal.py [-h] startmonth endmonth
