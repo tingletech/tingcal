@@ -19,6 +19,7 @@ optional arguments:
   -h, --help  show this help message and exit
 ```
 
+## example
 ```
 ./tingcal.py 2013-03 2013-06
 YYYY-Www  Mo Tu We Th Fr Sa Su     
@@ -41,3 +42,21 @@ YYYY-Www  Mo Tu We Th Fr Sa Su
 2013-W25  17 18 19 20 21 22 23     
 2013-W26  24 25 26 27 28 29 30     
 ```
+
+## Why?  What?
+
+This is how I like to see a calendar.  Why should weeks split over
+months?  I used to make these on graph paper when I was in high
+school and college (sans the ISO weeks, but with the week of the
+term), and I just relaized the other day I could use "enclosed
+alphanumerics" from unicode to mark the start of the months with a
+calendar from the unix command `cal`.  
+
+I added in the [ISO 8601 calendar](http://www.staff.science.uu.nl/~gent0113/calendar/isocalendar.htm) weeks because of the general irony
+of [xkcd.com/1179/](http://xkcd.com/1179/) and a discussion about it on facebook.
+There are also YYYY-Www-dd and YYYY-ddd that use numbers for the
+day of the week of the day of the year in addition to YYYY-MM-dd.
+
+I might add the day of the year that each week starts on.
+
+I might add zodiac signs / full moons options.
