@@ -16,9 +16,10 @@ import argparse		# http://docs.python.org/2.7/library/argparse.html
 import sys		# http://docs.python.org/2.7/library/sys.html
 import calendar 	# http://docs.python.org/2/library/calendar.html 
 import datetime         # http://docs.python.org/2/library/datetime.html#date-objects
+import ephem		# http://rhodesmill.org/pyephem/quick.html#phases-of-the-moon
 import pprint
 
-def tingcal(start, end, zodiac):
+def tingcal(start, end, zodiac, lunar):
     # http://stackoverflow.com/a/4040204/1763984
     start_month=start.month
     end_months=(end.year-start.year)*12 + end.month+1
@@ -53,15 +54,21 @@ def tingcal(start, end, zodiac):
                 # print the out ISO 8601 calendar week
                 #           YYYY-Www
                 out = out + u'{}-W{:02d} '.format(iso_year, iso_week)
+                zodiac_code=""
+                lunar_code=""
                 # day below is a datetime.date 
                 for day in week:
                     # check if the zodiac sign changes today
                     if zodiac:
                         zodiac_code = zodiac_start(day.month, day.day)
+                    if lunar:
+                        lunar_code = lunar_start(day.year, day.month, day.day)
                     # the first day of the month is a special day
                     if day.day == 1:
                         num = unichr(start_enclosed_alphanumeric_range + day.month - 1)
                         out = out + u'  ' + num
+                    elif lunar_code:
+                        out = out + u' ' + lunar_code + u' '
                     elif zodiac_code:
                         out = out + u'  ' + zodiac_code
                     else:
@@ -88,6 +95,21 @@ def zodiac_start(month, day):
     if (month,day) in signs:
         return signs[(month,day)]
 
+def lunar_start(year, month, day):
+    #  🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌑
+    # >>> ephem.next_full_moon((2013, 11, 17)).tuple()[:3]
+    # (2013, 11, 17)
+    if (year, month, day) == ephem.next_full_moon((year, month, day)).tuple()[:3]:
+        return u"🌕"
+    elif (year, month, day) == ephem.next_first_quarter_moon((year, month, day)).tuple()[:3]:
+        return u"🌓"
+    elif (year, month, day) == ephem.next_last_quarter_moon((year, month, day)).tuple()[:3]:
+        return u"🌗"
+    elif (year, month, day) == ephem.next_new_moon((year, month, day)).tuple()[:3]:
+        return u"🌑"
+
+    # >>> ephem.next_full_moon((2013, 11, 17)).tuple()[:3]
+
 # main() idiom for importing into REPL for debugging 
 def main(argv=None):
     def datearg(datestr):
@@ -97,13 +119,14 @@ def main(argv=None):
     parser.add_argument('startmonth', nargs=1, type=datearg, help='start month YYYY-MM') 
     parser.add_argument('endmonth', nargs=1, type=datearg, help='end month YYYY-MM')
     parser.add_argument('--zodiac', action='store_const', const=True, help='print zodiac signs')
+    parser.add_argument('--lunar', action='store_const', const=True, help='print lunar phase')
     # options for which set of enclosed characters are used
     # parser.add_argument('--start-enclosed-range' default u'①' hex 2460 decimal 9312
     # parser.add_argument('--start-zodiac-range' default 
     if argv is None:
         argv = parser.parse_args()
 
-    tingcal(argv.startmonth[0], argv.endmonth[0], argv.zodiac)
+    tingcal(argv.startmonth[0], argv.endmonth[0], argv.zodiac, argv.lunar)
 
 if __name__ == "__main__":
     sys.exit(main())
