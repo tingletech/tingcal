@@ -12,12 +12,18 @@
 # http://www.staff.science.uu.nl/~gent0113/calendar/isocalendar.htm
 
 from __future__ import unicode_literals
+from __future__ import print_function
 import argparse		# http://docs.python.org/2.7/library/argparse.html
 import sys		# http://docs.python.org/2.7/library/sys.html
 import calendar 	# http://docs.python.org/2/library/calendar.html 
 import datetime         # http://docs.python.org/2/library/datetime.html#date-objects
 import ephem		# http://rhodesmill.org/pyephem/quick.html#phases-of-the-moon
 import pprint
+
+try:
+    chr = unichr
+except NameError:
+    pass
 
 def tingcal(start, end, zodiac, lunar):
     # http://stackoverflow.com/a/4040204/1763984
@@ -65,17 +71,17 @@ def tingcal(start, end, zodiac, lunar):
                         lunar_code = lunar_start(day.year, day.month, day.day)
                     # the first day of the month is a special day
                     if day.day == 1:
-                        num = unichr(start_enclosed_alphanumeric_range + day.month - 1)
+                        num = chr(start_enclosed_alphanumeric_range + day.month - 1)
                         out = out + u'  ' + num
                     elif lunar_code:
-                        out = out + u' ' + lunar_code + u' '
+                        out = out + u' ' + lunar_code # + u' '
                     elif zodiac_code:
                         out = out + u'  ' + zodiac_code
                     else:
                         out = out + u'{:>3}'.format(day.day)
                 out = out + u"     \n"
                 first_week = False
-    print out.encode("utf-8")
+    print(out)
 
 def zodiac_start(month, day):
     signs = { 
