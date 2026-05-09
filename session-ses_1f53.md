@@ -2,7 +2,7 @@
 
 **Session ID:** ses_1f537173dffenWGyFDAhkZ2Onw
 **Created:** 5/8/2026, 8:29:59 PM
-**Updated:** 5/8/2026, 8:36:17 PM
+**Updated:** 5/8/2026, 9:16:25 PM
 
 ---
 
@@ -2028,6 +2028,194 @@ uv run tingcal 2013-03 2013-06 --zodiac --lunar --server
 ```
 
 The server serves a styled HTML table at `http://localhost:9999` with the same calendar data.
+
+---
+
+## User
+
+can you update the README.md with directions on running from uv and add an AGENTS.md?
+
+---
+
+## Assistant (Build · Big Pickle · 2.8s)
+
+_Thinking:_
+
+The user wants me to:
+1. Update README.md with directions on running from uv
+2. Add an AGENTS.md file
+
+Let me read the current README.md first, then plan the updates.
+
+**Tool: read**
+
+**Input:**
+```json
+{
+  "filePath": "/home/opencode-role/agent-code/tingcal/README.md"
+}
+```
+
+**Output:**
+```
+<path>/home/opencode-role/agent-code/tingcal/README.md</path>
+<type>file</type>
+<content>
+1: # Calendar
+2: 
+3: Playing around with a funky calendar scheme
+4: 
+5: sample calendar 
+6:  * [pdf](http://tingletech.github.io/tingcal/2013.zodiac.pdf)
+7:  * [unicode text](http://tingletech.github.io/tingcal/2013.zodiac.txt)
+8: 
+9: ```
+10: usage: tingcal.py [-h] [--zodiac] startmonth endmonth
+11: 
+12: create a calendar
+13: 
+14: positional arguments:
+15:   startmonth  start month YYYY-MM
+16:   endmonth    end month YYYY-MM
+17: 
+18: optional arguments:
+19:   -h, --help  show this help message and exit
+20:   --zodiac    print zodiac signs
+21:   --lunar     print lunar phase```
+22: ```
+23: 
+24: ## example
+25: ```
+26: ./tingcal.py 2013-03 2013-06 --zodiac --lunar
+27: YYYY-Www  Mo Tu We Th Fr Sa Su     
+28: 2013-W09  🌕  26 27 28  ③  2  3     
+29: 2013-W10  🌗   5  6  7  8  9 10     
+30: 2013-W11  🌑  12 13 14 15 16 17     
+31: 2013-W12  18 🌓   ♈ 21 22 23 24     
+32: 2013-W13  25 26 🌕  28 29 30 31     
+33: 2013-W14   ④  2 🌗   4  5  6  7     
+34: 2013-W15   8  9 🌑  11 12 13 14     
+35: 2013-W16  15 16 17 🌓  19  ♉ 21     
+36: 2013-W17  22 23 24 🌕  26 27 28     
+37: 2013-W18  29 30  ⑤ 🌗   3  4  5     
+38: 2013-W19   6  7  8  9 🌑  11 12     
+39: 2013-W20  13 14 15 16 17 🌓  19     
+40: 2013-W21  20  ♊ 22 23 24 🌕  26     
+41: 2013-W22  27 28 29 30 🌗   ⑥  2     
+42: 2013-W23   3  4  5  6  7 🌑   9     
+43: 2013-W24  10 11 12 13 14 15 🌓      
+44: 2013-W25  17 18 19 20  ♋ 22 🌕      
+45: 2013-W26  24 25 26 27 28 29 🌗    
+46: ```
+47: 
+48: ## Why?  What?
+49: 
+50: This is how I like to see a calendar.  
+51: 
+52: I added in the [ISO 8601 calendar](http://www.staff.science.uu.nl/~gent0113/calendar/isocalendar.htm) weeks because of 
+53: of [xkcd.com/1179/](http://xkcd.com/1179/).
+54: There are also YYYY-Www-dd and YYYY-ddd that use numbers for the
+55: day of the week of the day of the year in addition to YYYY-MM-dd.
+56: 
+57: I added in the zodiac signs for entertianment purposes only.
+58: 
+59: I might add the ISO calendar ordinal day of the year that each week
+60: starts on (for YYYY-ddd).
+61: 
+62: I might add full moons option (it would have to be exclusive to the zodiac option)
+
+(End of file - total 62 lines)
+</content>
+```
+
+---
+
+## Assistant (Build · Big Pickle · 3.0s)
+
+_Thinking:_
+
+I need to:
+1. Update README.md — update the usage and example to use `uv run tingcal` instead of `./tingcal.py`, and add the new `--server`/`--port` options to the usage
+2. Create an AGENTS.md file
+
+Let me also check if there's anything in the NOTES file that might be relevant.
+
+**Tool: read**
+
+**Input:**
+```json
+{
+  "filePath": "/home/opencode-role/agent-code/tingcal/NOTES"
+}
+```
+
+**Output:**
+```
+<path>/home/opencode-role/agent-code/tingcal/NOTES</path>
+<type>file</type>
+<content>
+1: ./tingcal.py 2013-01 2013-12 | column -c 100 > 2013.txt
+
+(End of file - total 1 lines)
+</content>
+```
+
+---
+
+## Assistant (Build · Big Pickle · 8.7s)
+
+_Thinking:_
+
+Now let me update the README.md and create AGENTS.md.
+
+**Tool: edit**
+
+**Input:**
+```json
+{
+  "filePath": "/home/opencode-role/agent-code/tingcal/README.md",
+  "oldString": "# Calendar\n\nPlaying around with a funky calendar scheme\n\nsample calendar \n * [pdf](http://tingletech.github.io/tingcal/2013.zodiac.pdf)\n * [unicode text](http://tingletech.github.io/tingcal/2013.zodiac.txt)\n\n```\nusage: tingcal.py [-h] [--zodiac] startmonth endmonth\n\ncreate a calendar\n\npositional arguments:\n  startmonth  start month YYYY-MM\n  endmonth    end month YYYY-MM\n\noptional arguments:\n  -h, --help  show this help message and exit\n  --zodiac    print zodiac signs\n  --lunar     print lunar phase```\n```\n\n## example\n```\n./tingcal.py 2013-03 2013-06 --zodiac --lunar",
+  "newString": "# tingcal\n\nA funky calendar generator with ISO 8601 weeks, zodiac signs, and lunar phases.\n\nsample calendar \n * [pdf](http://tingletech.github.io/tingcal/2013.zodiac.pdf)\n * [unicode text](http://tingletech.github.io/tingcal/2013.zodiac.txt)\n\n```\nusage: tingcal [-h] [--zodiac] [--lunar] [--server] [--port PORT] startmonth endmonth\n\ncreate a calendar\n\npositional arguments:\n  startmonth  start month YYYY-MM\n  endmonth    end month YYYY-MM\n\noptions:\n  -h, --help  show this help message and exit\n  --zodiac    print zodiac signs\n  --lunar     print lunar phase\n  --server    start web server\n  --port      web server port (default: 9999)\n```\n\n## run with uv\n\n```sh\nuv run tingcal 2024-01 2024-12 --zodiac --lunar\nuv run tingcal 2024-01 2024-12 --server --port 9999\nuv run python -m tingcal 2024-01 2024-12\n```\n\n## example\n```\nuv run tingcal 2013-03 2013-06 --zodiac --lunar"
+}
+```
+
+**Output:**
+```
+Edit applied successfully.
+```
+
+---
+
+## Assistant (Build · Big Pickle · 4.1s)
+
+_Thinking:_
+
+Now let me create the AGENTS.md file.
+
+**Tool: write**
+
+**Input:**
+```json
+{
+  "filePath": "/home/opencode-role/agent-code/tingcal/AGENTS.md",
+  "content": "# Agents\n\n## Commands\n\n- **Run the CLI**: `uv run tingcal <start> <end> [--zodiac] [--lunar] [--server] [--port PORT]`\n- **Run as module**: `uv run python -m tingcal <start> <end>`\n- **Install in dev mode**: `uv sync`\n- **Add dependency**: `uv add <package>`\n\n## Code style\n\n- No comments in code\n- Follow existing patterns\n- Use standard library where possible (only `ephem` as external dependency)\n"
+}
+```
+
+**Output:**
+```
+Wrote file successfully.
+```
+
+---
+
+## Assistant (Build · Big Pickle · 2.9s)
+
+_Thinking:_
+
+Done. Let me verify both files look right.
+
+Done. Updated `README.md` with the new usage/example using `uv run tingcal` and the `--server`/`--port` options. Created `AGENTS.md` with common commands and code style conventions.
 
 ---
 
