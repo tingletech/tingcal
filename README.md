@@ -1,13 +1,13 @@
-# Calendar
+# tingcal
 
-Playing around with a funky calendar scheme
+A funky calendar generator with ISO 8601 weeks, zodiac signs, and lunar phases.
 
 sample calendar 
  * [pdf](http://tingletech.github.io/tingcal/2013.zodiac.pdf)
  * [unicode text](http://tingletech.github.io/tingcal/2013.zodiac.txt)
 
 ```
-usage: tingcal.py [-h] [--zodiac] startmonth endmonth
+usage: tingcal [-h] [--zodiac] [--lunar] [--server] [--host HOST] [--port PORT] startmonth endmonth
 
 create a calendar
 
@@ -15,15 +15,26 @@ positional arguments:
   startmonth  start month YYYY-MM
   endmonth    end month YYYY-MM
 
-optional arguments:
+options:
   -h, --help  show this help message and exit
   --zodiac    print zodiac signs
-  --lunar     print lunar phase```
+  --lunar     print lunar phase
+  --server    start web server
+  --host      web server host (default: localhost)
+  --port      web server port (default: 9999)
+```
+
+## run with uv
+
+```sh
+uv run tingcal 2024-01 2024-12 --zodiac --lunar
+uv run tingcal 2024-01 2024-12 --server --port 9999
+uv run python -m tingcal 2024-01 2024-12
 ```
 
 ## example
 ```
-./tingcal.py 2013-03 2013-06 --zodiac --lunar
+uv run tingcal 2013-03 2013-06 --zodiac --lunar
 YYYY-Www  Mo Tu We Th Fr Sa Su     
 2013-W09  🌕  26 27 28  ③  2  3     
 2013-W10  🌗   5  6  7  8  9 10     
