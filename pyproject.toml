@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tingcal"
+version = "0.1.0"
+description = "A calendar generator with ISO weeks, zodiac signs, and lunar phases"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ephem>=4.2.1",
+]
+
+[project.scripts]
+tingcal = "tingcal:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tingcal"]
