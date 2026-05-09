@@ -204,13 +204,16 @@ def main(argv=None):
     parser.add_argument(
         "--port", type=int, default=9999, help="web server port (default: 9999)"
     )
+    parser.add_argument(
+        "--host", type=str, default="localhost", help="web server host (default: localhost)"
+    )
 
     if argv is None:
         argv = parser.parse_args()
 
     if argv.server:
         run_server(
-            "localhost",
+            argv.host,
             argv.port,
             argv.startmonth[0],
             argv.endmonth[0],

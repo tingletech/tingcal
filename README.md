@@ -7,7 +7,7 @@ sample calendar
  * [unicode text](http://tingletech.github.io/tingcal/2013.zodiac.txt)
 
 ```
-usage: tingcal [-h] [--zodiac] [--lunar] [--server] [--port PORT] startmonth endmonth
+usage: tingcal [-h] [--zodiac] [--lunar] [--server] [--host HOST] [--port PORT] startmonth endmonth
 
 create a calendar
 
@@ -20,6 +20,7 @@ options:
   --zodiac    print zodiac signs
   --lunar     print lunar phase
   --server    start web server
+  --host      web server host (default: localhost)
   --port      web server port (default: 9999)
 ```
 

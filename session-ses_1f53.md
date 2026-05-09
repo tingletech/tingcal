@@ -2,7 +2,7 @@
 
 **Session ID:** ses_1f537173dffenWGyFDAhkZ2Onw
 **Created:** 5/8/2026, 8:29:59 PM
-**Updated:** 5/8/2026, 9:16:25 PM
+**Updated:** 5/8/2026, 9:20:02 PM
 
 ---
 
@@ -2216,6 +2216,86 @@ _Thinking:_
 Done. Let me verify both files look right.
 
 Done. Updated `README.md` with the new usage/example using `uv run tingcal` and the `--server`/`--port` options. Created `AGENTS.md` with common commands and code style conventions.
+
+---
+
+## User
+
+can you also add a --host option that defaults to localhost but can be overridden?  update the README as well
+
+---
+
+## Assistant (Build · Big Pickle · 5.5s)
+
+_Thinking:_
+
+Simple - add --host argument, update main() and README.
+
+**Tool: edit**
+
+**Input:**
+```json
+{
+  "filePath": "/home/opencode-role/agent-code/tingcal/src/tingcal/__init__.py",
+  "oldString": "    parser.add_argument(\"--server\", action=\"store_true\", help=\"start web server\")\n    parser.add_argument(\n        \"--port\", type=int, default=9999, help=\"web server port (default: 9999)\"\n    )\n\n    if argv is None:\n        argv = parser.parse_args()\n\n    if argv.server:\n        run_server(\n            \"localhost\",\n            argv.port,",
+  "newString": "    parser.add_argument(\"--server\", action=\"store_true\", help=\"start web server\")\n    parser.add_argument(\n        \"--port\", type=int, default=9999, help=\"web server port (default: 9999)\"\n    )\n    parser.add_argument(\n        \"--host\", type=str, default=\"localhost\", help=\"web server host (default: localhost)\"\n    )\n\n    if argv is None:\n        argv = parser.parse_args()\n\n    if argv.server:\n        run_server(\n            argv.host,\n            argv.port,"
+}
+```
+
+**Output:**
+```
+Edit applied successfully.
+```
+
+---
+
+## Assistant (Build · Big Pickle · 3.8s)
+
+**Tool: edit**
+
+**Input:**
+```json
+{
+  "filePath": "/home/opencode-role/agent-code/tingcal/README.md",
+  "oldString": "usage: tingcal [-h] [--zodiac] [--lunar] [--server] [--port PORT] startmonth endmonth",
+  "newString": "usage: tingcal [-h] [--zodiac] [--lunar] [--server] [--host HOST] [--port PORT] startmonth endmonth"
+}
+```
+
+**Output:**
+```
+Edit applied successfully.
+```
+
+---
+
+## Assistant (Build · Big Pickle · 3.3s)
+
+**Tool: edit**
+
+**Input:**
+```json
+{
+  "filePath": "/home/opencode-role/agent-code/tingcal/README.md",
+  "oldString": "  --server    start web server\n  --port      web server port (default: 9999)",
+  "newString": "  --server    start web server\n  --host      web server host (default: localhost)\n  --port      web server port (default: 9999)"
+}
+```
+
+**Output:**
+```
+Edit applied successfully.
+```
+
+---
+
+## Assistant (Build · Big Pickle · 2.4s)
+
+Done. Use `--host 0.0.0.0` to bind to all interfaces, e.g.:
+
+```
+uv run tingcal 2024-01 2024-12 --server --host 0.0.0.0 --port 9999
+```
 
 ---
 
